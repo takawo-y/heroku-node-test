@@ -2,6 +2,7 @@
  "name": "node-hello-world",
  "version": "0.0.1",
  "dependencies": {
-	"express": "4.4.0"
+	"express": "4.4.0",
+	"mongoose": "3.8.x"
  }
 }
