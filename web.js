@@ -4,11 +4,12 @@
 var express = require("express");
 var app = express();
 app.get("/", function(req, res){
-	var port = process.env.PORT || 3000;
-	app.listen(port, function(){
-		console.log("Listening on " + port);
-	});
+	res.send("NodeでTest");
+});
 
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
+ console.log("Listening on " + port);
 });
 
 //DB接続
@@ -38,26 +39,17 @@ mongoose.connect(uriString, function (err, res) {
  }
 });
 var wbModel = mongoose.model("word_book", wbSchema);
-//var wb1 = new wbModel({
-// "work_book" : "英単語",
-// "regist_date" : "2014-06-06",
-// "update_date" : "2014-06-06",
-// "front_card" : "opportunity",
-// "back_card" : "アパ[テュ]ーニティ 良い機会,好機,チャンス"
-//});
-//wb1.save(function (err) {if (err) console.log ('Error on save!')});
 
 wbModel.find({}).exec(function(err, docs) {
  if(!err) {
-//		console.log("num of item => " + docs.length);
-	console.log("結果 => " + docs);
-	for (var i = 0; i < docs.length; i++ ) {
-	 console.log(i);
-	}
 	console.log("num of item => " + docs.length);
+	for (var i = 0; i < docs.length; i++ ) {
+	 console.log(i+"件目＝"+docs[i]);
+	}
 	mongoose.disconnect();  // mongodbへの接続を切断
-	process.exit();         // node.js終了
+//	 process.exit();         // node.js終了
  } else {
 	console.log("find error:"+err)
  }
 });
+
